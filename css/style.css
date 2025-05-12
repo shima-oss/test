@@ -1,0 +1,196 @@
+/* 基本スタイル */
+:root {
+  --primary-color: #4a6da7;
+  --secondary-color: #8da9db;
+  --accent-color: #335590;
+  --background-color: #f5f7fa;
+  --text-color: #333;
+  --light-gray: #f0f2f5;
+  --border-color: #ddd;
+  --success-color: #4caf50;
+  --error-color: #f44336;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans JP', 'Meiryo', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--secondary-color);
+  text-align: center;
+  position: relative;
+}
+
+h1::before {
+  content: "👥";
+  margin-right: 10px;
+}
+
+/* フォーム関連 */
+.search-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--light-gray);
+  border-radius: 6px;
+  align-items: center;
+}
+
+label {
+  font-weight: bold;
+  color: var(--primary-color);
+  min-width: 80px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  padding-left: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234a6da7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 16px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 109, 167, 0.2);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+button:hover {
+  background-color: var(--accent-color);
+}
+
+button::before {
+  content: "🔍";
+}
+
+/* 結果表示エリア */
+.result-container {
+  margin-top: 20px;
+}
+
+.customer-card {
+  padding: 20px;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--primary-color);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.customer-card h2 {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.customer-card h2::before {
+  content: "👤";
+  margin-right: 8px;
+}
+
+.customer-info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 15px;
+}
+
+.info-label {
+  font-weight: bold;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+}
+
+.info-label[data-type="name"]::before { content: "📝"; margin-right: 5px; }
+.info-label[data-type="email"]::before { content: "📧"; margin-right: 5px; }
+.info-label[data-type="tel"]::before { content: "📞"; margin-right: 5px; }
+.info-label[data-type="address"]::before { content: "🏠"; margin-right: 5px; }
+.info-label[data-type="rank"]::before { content: "🏆"; margin-right: 5px; }
+
+.error-message {
+  color: var(--error-color);
+  padding: 15px;
+  background-color: #ffebee;
+  border-radius: 4px;
+  border-left: 4px solid var(--error-color);
+  display: flex;
+  align-items: center;
+  animation: shake 0.5s ease-in-out;
+}
+
+.error-message::before {
+  content: "⚠️";
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .customer-info {
+    grid-template-columns: 1fr;
+  }
+} 

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>顧客・外国人労働者管理システム</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/foreignWorker.css">
+</head>
+<body>
+  <div class="container">
+    <h1>顧客・外国人労働者管理システム</h1>
+    
+    <!-- タブナビゲーション -->
+    <div class="tabs">
+      <a href="#" class="active" data-target="customer-tab">顧客検索</a>
+      <a href="#" data-target="foreign-workers-tab">外国人労働者一覧</a>
+      <a href="#" data-target="registration-tab">新規登録</a>
+    </div>
+    
+    <!-- 通知表示エリア -->
+    <div id="notifications"></div>
+    
+    <!-- 顧客検索タブ -->
+    <div id="customer-tab" class="tab-content">
+      <div class="search-form">
+        <label for="customerId">顧客ID：</label>
+        <input type="text" id="customerId" placeholder="例: 1001" autocomplete="off" />
+        <button id="searchButton">検索</button>
+      </div>
+      
+      <div class="result-container" id="result"></div>
+    </div>
+    
+    <!-- 外国人労働者一覧タブ -->
+    <div id="foreign-workers-tab" class="tab-content">
+      <!-- フィルターと検索 -->
+      <div class="filter-container">
+        <div class="status-filters">
+          <button class="status-filter active" data-status="all">すべて</button>
+          <button class="status-filter" data-status="許可済">許可済</button>
+          <button class="status-filter" data-status="申請中">申請中</button>
+          <button class="status-filter" data-status="更新中">更新中</button>
+          <button class="status-filter" data-status="却下">却下</button>
+        </div>
+        
+        <div class="search-container">
+          <form id="worker-search-form">
+            <select id="search-type">
+              <option value="all">すべて</option>
+              <option value="id">ID</option>
+              <option value="name">氏名</option>
+              <option value="nationality">国籍</option>
+              <option value="visa">在留資格</option>
+            </select>
+            <input type="text" id="worker-search-input" placeholder="検索キーワード" />
+            <button type="submit">検索</button>
+          </form>
+        </div>
+      </div>
+      
+      <!-- 件数表示 -->
+      <div class="count-display">
+        表示: <span id="total-count">0</span> 件
+      </div>
+      
+      <!-- テーブル -->
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>氏名</th>
+              <th>国籍</th>
+              <th>在留資格</th>
+              <th>期限</th>
+              <th>状態</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="foreign-workers-list">
+            <!-- JavaScriptで動的に生成 -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- 新規登録タブ -->
+    <div id="registration-tab" class="tab-content">
+      <div class="form-container">
+        <h2 id="form-title">新規登録</h2>
+        
+        <form id="foreign-worker-form">
+          <input type="hidden" id="workerId" name="workerId" />
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">氏名</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="nationality">国籍</label>
+              <input type="text" id="nationality" name="nationality" required />
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="passportNo">パスポート番号</label>
+              <input type="text" id="passportNo" name="passportNo" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="visaType">在留資格</label>
+              <select id="visaType" name="visaType" required>
+                <option value="">選択してください</option>
+                <option value="技術・人文知識・国際業務">技術・人文知識・国際業務</option>
+                <option value="技能">技能</option>
+                <option value="特定技能">特定技能</option>
+                <option value="技能実習">技能実習</option>
+                <option value="留学">留学</option>
+                <option value="家族滞在">家族滞在</option>
+                <option value="永住者">永住者</option>
+                <option value="日本人の配偶者等">日本人の配偶者等</option>
+                <option value="定住者">定住者</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="visaExpiry">在留期限</label>
+              <input type="date" id="visaExpiry" name="visaExpiry" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="employer">雇用先</label>
+              <input type="text" id="employer" name="employer" required />
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="position">職種</label>
+              <input type="text" id="position" name="position" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="startDate">雇用開始日</label>
+              <input type="date" id="startDate" name="startDate" required />
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="status">申請状況</label>
+              <select id="status" name="status" required>
+                <option value="">選択してください</option>
+                <option value="申請中">申請中</option>
+                <option value="許可済">許可済</option>
+                <option value="更新中">更新中</option>
+                <option value="却下">却下</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="cancel-btn" onclick="document.getElementById('foreign-worker-form').reset()">キャンセル</button>
+            <button type="submit">登録</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- データと機能を読み込み -->
+  <script src="data/customers.js"></script>
+  <script src="data/foreignWorkers.js"></script>
+  <script src="js/customerSearch.js"></script>
+  <script src="js/foreignWorkerManager.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+/* 外国人労働者情報管理スタイル */
+
+/* タブ関連 */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.tabs a {
+  padding: 10px 20px;
+  color: var(--text-color);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tabs a:hover {
+  background-color: var(--light-gray);
+}
+
+.tabs a.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+  font-weight: 700;
+}
+
+.tab-content {
+  display: none;
+}
+
+#customer-tab {
+  display: block;
+}
+
+/* 一覧テーブル */
+.table-container {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.data-table th {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: left;
+  padding: 12px 15px;
+  font-weight: 500;
+}
+
+.data-table tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s;
+}
+
+.data-table tr:hover {
+  background-color: var(--light-gray);
+}
+
+.data-table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+}
+
+/* ステータス表示 */
+.status-approved {
+  color: var(--success-color);
+  background-color: rgba(76, 175, 80, 0.1);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.status-pending {
+  color: #ff9800;
+  background-color: rgba(255, 152, 0, 0.1);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.status-updating {
+  color: #2196f3;
+  background-color: rgba(33, 150, 243, 0.1);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.status-rejected {
+  color: var(--error-color);
+  background-color: rgba(244, 67, 54, 0.1);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* 操作ボタン */
+.action-btn {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-right: 5px;
+  border: none;
+}
+
+.edit-btn {
+  background-color: #2196f3;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #0d8aee;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+}
+
+/* フィルターと検索 */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-filters {
+  display: flex;
+  gap: 8px;
+}
+
+.status-filter {
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.status-filter:hover {
+  background-color: var(--light-gray);
+}
+
+.status-filter.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.search-container {
+  display: flex;
+  gap: 8px;
+}
+
+#worker-search-form {
+  display: flex;
+  gap: 8px;
+}
+
+#search-type {
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+#worker-search-input {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  min-width: 200px;
+}
+
+/* 登録フォーム */
+.form-container {
+  background-color: var(--light-gray);
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+#form-title {
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.form-actions button {
+  padding: 10px 20px;
+}
+
+.form-actions .cancel-btn {
+  background-color: #9e9e9e;
+}
+
+.form-actions .cancel-btn:hover {
+  background-color: #757575;
+}
+
+/* 件数表示 */
+.count-display {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* 通知メッセージ */
+#notifications {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.notification {
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: white;
+  font-weight: 500;
+  animation: fadeIn 0.3s, slideIn 0.3s;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.notification.info {
+  background-color: #2196f3;
+}
+
+.notification.success {
+  background-color: var(--success-color);
+}
+
+.notification.warning {
+  background-color: #ff9800;
+}
+
+.notification.error {
+  background-color: var(--error-color);
+}
+
+.notification.hide {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(50px); }
+  to { transform: translateX(0); }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .status-filters {
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+  
+  .search-container {
+    flex-direction: column;
+  }
+  
+  #worker-search-form {
+    flex-direction: column;
+  }
+  
+  .data-table {
+    font-size: 14px;
+  }
+  
+  .data-table th, 
+  .data-table td {
+    padding: 8px 10px;
+  }
+  
+  .action-btn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+} 
